@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Toggle Right Sidebar Minhaj-ul-Quran-Project-Component</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+  <style>
+    :root {
+      --primary: #D3D6D7;
+      --secondary: #343a40;
+      --ternary: #212529;
+      --forthary: #b1acac
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: ProximaVara, "Helvetica Neue", Helvetica, Arial;
+    }
+
+    /* utitlities start */
+    .fy-overflowhidden {
+      overflow-y: hidden;
+    }
+
+    input[type=checkbox] {
+      accent-color: rgb(255, 255, 255);
+    }
+
+    .box_rounded {
+      border-radius: 134px;
+      background: var(--ternary);
+      margin: 0 1.5rem;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sm_font {
+      font-size: 0.7rem;
+    }
+
+    .text_primary_color {
+      color: var(--primary) !important;
+    }
+
+    .text_secondary_color {
+      color: var(--secondary) !important;
+    }
+
+    .bg_primary {
+      background-color: var(--ternary);
+      color: var(--primary);
+    }
+
+    .bg_secondary {
+      background-color: var(--secondary);
+      color: var(--primary);
+    }
+
+    .right_border {
+      border-right: 0.3px groove var(--primary);
+    }
+
+    .bottom_border {
+      border-bottom: 0.1px groove var(--forthary);
+      padding-bottom: 10px;
+    }
+
+    .active_box_inner {
+      background: var(--secondary);
+      border-radius: 134px;
+      color: var(--primary);
+      padding: 2px 4px !important;
+      text-align: center;
+      border: 0px !important;
+
+    }
+
+    .sub_heading {
+      padding: 0px 15px;
+      padding-bottom: 3px;
+      display: flex;
+      justify-content: center;
+      font-size: 0.7rem;
+      line-height: 21.64px;
+    }
+
+    .dropdown-menu {
+      transform: translate3d(7px, 33px, 0px) !important;
+    }
+
+    .dropdown-item:hover {
+      color: var(--primary) !important;
+      background: var(--ternary) !important;
+      border-bottom: 1px groove var(--primary) !important;
+    }
+
+    .vertical_center {
+      align-items: center;
+    }
+
+    .no_border {
+      border: none;
+    }
+
+    .settings_op {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      z-index: 1111;
+    }
+
+    /* utitlities end */
+
+    /* Sidebar style */
+    #sidebar {
+      min-width: 300px;
+      max-width: 300px;
+      background: #32373d;
+      color: #fff;
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+      position: relative;
+      position: absolute;
+      height: 100%;
+      /* right: 0px; */
+      right: -400px;
+      /* display: block; */
+    }
+
+    #sidebar .h6 {
+      color: #fff;
+    }
+
+    #sidebar.active {
+      margin-left: -300px;
+    }
+
+    #sidebar.active .custom-menu {
+      margin-right: -50px;
+    }
+
+    #sidebar.active .btn.btn-primary:before {
+      content: "\f053";
+      font-family: "FontAwesome";
+      right: 2px !important;
+    }
+
+    #sidebar.active .btn.btn-primary:after {
+      display: none;
+    }
+
+    #sidebar h1 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    #sidebar h1 .logo {
+      color: #fff;
+      display: block;
+      padding: 10px 30px;
+      background: #2f89fc;
+    }
+
+    #sidebar ul.components {
+      padding: 0;
+    }
+
+    #sidebar ul li {
+      font-size: 16px;
+    }
+
+    #sidebar ul li>ul {
+      margin-left: 10px;
+    }
+
+    #sidebar ul li>ul li {
+      font-size: 14px;
+    }
+
+    #sidebar ul li a {
+      padding: 15px 30px;
+      display: block;
+      color: rgba(255, 255, 255, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    #sidebar ul li a span.notif {
+      position: relative;
+    }
+
+    #sidebar ul li a span.notif small {
+      position: absolute;
+      top: -3px;
+      bottom: 0;
+      right: -3px;
+      width: 12px;
+      height: 12px;
+      content: '';
+      background: red;
+      border-radius: 50%;
+      font-family: "Poppins", Arial, sans-serif;
+      font-size: 8px;
+    }
+
+    #sidebar ul li a:hover {
+      color: #fff;
+      background: #2f89fc;
+      border-bottom: 1px solid #2f89fc;
+    }
+
+    #sidebar ul li.active>a {
+      background: transparent;
+      color: #fff;
+    }
+
+    #sidebar ul li.active>a:hover {
+      background: #2f89fc;
+      border-bottom: 1px solid #2f89fc;
+    }
+
+    <blade media|%20(max-width%3A%20991.98px)%20%7B>#sidebar {
+      min-width: 100%;
+    }
+
+    /* #sidebar {
+      margin-left: -300px; } */
+    #sidebar.active {
+      margin-left: 0;
+    }
+
+    #sidebar .custom-menu {
+      margin-right: -60px !important;
+      top: 10px !important;
+    }
+    }
+
+    #sidebar .custom-menu {
+      display: inline-block;
+      position: absolute;
+      top: 20px;
+      right: 0;
+      margin-right: -35px;
+      -webkit-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
+    }
+
+    <blade media|%20(prefers-reduced-motion%3A%20reduce)%20%7B>#sidebar .custom-menu {
+      -webkit-transition: none;
+      -o-transition: none;
+      transition: none;
+    }
+    }
+
+    #sidebar .custom-menu .btn.btn-primary {
+      background: #2f89fc;
+      border-color: transparent;
+      position: relative;
+      color: #000;
+      width: 30px;
+      height: 30px;
+    }
+
+    #sidebar .custom-menu .btn.btn-primary:after,
+    #sidebar .custom-menu .btn.btn-primary:before {
+      position: absolute;
+      top: 2px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      font-family: "FontAwesome";
+      color: #fff;
+    }
+
+    #sidebar .custom-menu .btn.btn-primary:after {
+      content: "\f054";
+      left: 2px;
+    }
+
+    <blade media|%20(max-width%3A%20991.98px)%20%7B>#sidebarCollapse span {
+      display: none;
+    }
+    }
+
+    #cross_sidebar {
+      cursor: pointer;
+    }
+
+    .headings {
+      font-size: 0.80rem;
+      font-weight: 600;
+      margin-bottom: 0px;
+    }
+
+    .arabic_text {
+      height: 90px;
+      width: 90%;
+      margin: 0 auto;
+      border-radius: 5%;
+    }
+
+    .font_option,
+    .theme_option {
+      cursor: pointer;
+    }
+
+    hr {
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      height: 0;
+      overflow: visible;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+      <h2 class="mb-4">Sidebar #09 <div class="custom-menu">
+          <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            View</button>
+        </div>
+      </h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</p>
+    </div>
+    <!-- ---------------------------------------------------------
+    --------------------------------------------------------- -->
+    <!-- Sidebar -->
+    <!-- ---------------------------------------------------------
+    --------------------------------------------------------- -->
+    <nav id="sidebar" class="active text_primary_color">
+
+      <div class="row py-2 bottom_border align-items-center settings_op bg_primary">
+        <div class="col  ">
+          <h6 class=" pl-4 fy-overflowhidden headings">Settings</h6>
+        </div>
+        <div class="col  d-flex justify-content-end pr-5" id="cross_sidebar"
+          style="display-flex; justify-content: end;">X</div>
+      </div>
+      <!-- ______________________________ -->
+      <!-- ______________________________ -->
+      <ul class="list-unstyled components my-3">
+        <!-- Theme -->
+        <li class="active bottom_border pb-2">
+          <h6 class="pl-4 headings" style="overflow: hidden;">Theme</h6>
+          <div class="row box_rounded my-3">
+            <div class="col sm_font right_border py-0  ml-2 active_box_inner theme_option">Auto</div>
+            <div class="col sm_font right_border py-0  ml-2 theme_option">Light</div>
+            <div class="col sm_font right_border py-0  ml-2 theme_option">Spia</div>
+            <div class="col sm_font py-0 theme_option ml-2 ">Dark</div>
+
+          </div>
+          <em class="sub_heading">The system theme automatically adopts to your light/dark mode settings</em>
+        </li>
+        <!-- Quran Font -->
+        <li class="bottom_border py-4">
+          <h6 class="pl-4 headings" style="overflow: hidden;">Quran Font</h6><br>
+          <div class="row box_rounded quran_font">
+            <div class="col sm_font right_border py-0 active_box_inner font_option">Uthmani</div>
+            <div class="col sm_font right_border py-0 font_option">IndoPak</div>
+            <div class="col sm_font  py-0 font_option">Tajweed</div>
+        </li>
+        <!-- Style -->
+        <li>
+          <div class="row vertical_center px-3 ">
+            <div class="col sm_font py-0 pl-3">
+              <p class="pl-2 headings" style="overflow: hidden;">Style</p>
+            </div>
+
+            <div class="col sm_font d-flex justify-content-end py-0">
+              <div class="btn-group  p-2">
+                <button type="button" class="btn btn-sm sm_font  bg_primary text_primary_color">Tajweed</button>
+                <button type="button" class="btn btn-sm  sm_font bg_primary dropdown-toggle dropdown-toggle-split"
+                  data-toggle="dropdown" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu bg_primary sm_font p-0 w-50">
+                  <a class="dropdown-item p-1 px-2" href="#">Tajweed</a>
+                </div>
+              </div>
+            </div>
+        </li>
+        <!-- Font size -->
+        <li>
+          <div class="row vertical_center px-3 ">
+            <div class="col sm_font py-0 pl-3 pb-3">
+              <p class="pl-2 headings" style="overflow: hidden;">Font size</p>
+            </div>
+
+            <div class="col sm_font d-flex justify-content-end py-0">
+              <div class="input-group w-auto justify-content-end align-items-center">
+                <button onclick="decrement()" class="text_primary_color bg_secondary no_border">-</button>
+                <input id=demoInput type=number min=1 max=10 value="1" disabled
+                  class="text-center text_primary_color bg_secondary no_border">
+                <button onclick="increment()" class="text_primary_color bg_secondary no_border">+</button>
+              </div>
+
+            </div>
+            <em class="sub_heading">Tajweed font shows a Tajweed colored Mushaf. You can read more about the Tajweed
+              color rules</em>
+
+        </li>
+        <!-- Arabic -->
+        <li class="bottom_border py-4">
+          <div class="arabic_text bg_primary ">
+
+          </div>
+        </li>
+        <!-- Word By Word -->
+        <li class="bottom_border py-4 ">
+          <div class="row vertical_center my-2">
+            <div class="col">
+              <h6 class="pl-4 headings" style="overflow: hidden;">Word By Word</h6>
+            </div>
+            <div class="col"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-help-circle">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"></path>
+              </svg></div>
+          </div>
+
+          <div class="d-flex vertical_center  justify-content-center px-1 ">
+            <div class="col ">
+              <input type="checkbox" id="checkbox" name="interest" value="checkbox" checked />
+              <label for="checkbox" class="sm_font">Translation</label>
+            </div>
+            <div class="col ">
+
+              <input type="checkbox" id="checkbox" name="interest" value="checkbox" checked />
+              <label for="checkbox" class="sm_font">Transliteration</label>
+            </div>
+          </div>
+
+          <!-- Tooltip Language -->
+          <div class="row vertical_center px-3 ">
+            <div class="col sm_font py-0 pl-3">
+              <p class="pl-lg-2 sub_heading  d-flex justify-content-start" style="overflow: hidden;">Tooltip Language
+              </p>
+            </div>
+
+            <div class="col sm_font d-flex justify-content-end py-0">
+              <div class="btn-group  p-2">
+                <button type="button" class="btn btn-sm sm_font  bg_primary">English</button>
+                <button type="button" class="btn btn-sm  sm_font bg_primary dropdown-toggle dropdown-toggle-split"
+                  data-toggle="dropdown" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu bg_primary sm_font p-0 w-50">
+                  <a class="dropdown-item p-1 px-2" href="#">English</a>
+                  <a class="dropdown-item p-1 px-2" href="#">Urdu</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    // $('#sidebar').css("right","400px");
+    $(document).ready(function () {
+      var side_bar_open = 1;
+      if (screen.width < 960) {
+        $("#cross_sidebar").click(function () {
+          $('#sidebar').css({
+            "position": "absolute",
+            " left": "0px!important",
+            " right": "auto",
+            // "right": '-400px',
+            "transition-timing-function": "ease-in-out",
+            "overflow-x": "hidden",
+            "transition-duration": "1s",
+          });
+          $('*').css('overflow-x', 'hidden');
+          $('#sidebar').delay(2000).fadeOut();
+          side_bar_open = 1;
+        });
+
+      }
+
+      $("#sidebarCollapse").click(function () {
+        if (side_bar_open == 1) {
+
+          $('#sidebar').css({
+            "right": '0px',
+            "transition-timing-function": "ease-in-out",
+            "transition-duration": "1s",
+            // "transition-delay": "1s",
+          });
+          $('*').css('overflow-x', 'visible');
+          $('#sidebar').css('overflow-x', 'hidden');
+          $('#sidebar').delay().fadeIn();
+          side_bar_open = 0;
+
+        } else if (side_bar_open == 0) {
+          $('#sidebar').css({
+            "right": '-400px',
+            "transition-timing-function": "ease-in-out",
+            "overflow-x": "hidden",
+            "transition-duration": "1s",
+          });
+          $('*').css('overflow-x', 'hidden');
+          $('#sidebar').delay(2000).fadeOut();
+          side_bar_open = 1;
+
+        }
+
+      });
+      // close sidebar
+      $("#cross_sidebar").click(function () {
+        $('#sidebar').css({
+          "right": '-400px',
+          "transition-timing-function": "ease-in-out",
+          "overflow-x": "hidden",
+          "transition-duration": "1s",
+        });
+        $('*').css('overflow-x', 'hidden');
+        $('#sidebar').delay(2000).fadeOut();
+        side_bar_open = 1;
+      });
+
+    });
+
+
+    function increment() {
+      document.getElementById('demoInput').stepUp();
+    }
+
+    function decrement() {
+      document.getElementById('demoInput').stepDown();
+    }
+
+    // Add active class to the current option (highlight it)
+
+    $(".font_option").click(function () {
+      $(".font_option").removeClass("active_box_inner");
+      $(this).addClass("active_box_inner");
+    });
+    $(".theme_option").click(function () {
+      $(".theme_option").removeClass("active_box_inner");
+      $(this).addClass("active_box_inner");
+    });
+  </script>
+</body>
+
+</html>

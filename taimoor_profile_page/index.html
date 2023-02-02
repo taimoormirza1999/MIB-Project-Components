@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Profile Page Minhaj-ul-Quran-Project-Component</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #222222;
+      --secondary: #FFFFFF;
+      --ternary: #343a40;
+      --forthary: #495057;
+      --fifthary: #777777;
+      --spacing-mega: 2rem;
+      --color-borders-hairline: #ebeef0;
+      --spacing-medium: 1rem;
+      --spacing-xsmall: 0.625rem;
+      --shade-1: #f4f5f6;
+      --shade-0: #f8f9fa;
+      --border-radius-default: 0.25rem;
+      --color-background-alternative-faint: var(--shade-1);
+      --font-weight-bold: 700;
+      --font-size-jumbo: 2rem;
+      --font-size-large: 1.125rem;
+      --font-size-xsmall: 0.75rem;
+      --color-success-medium: #2ca4ab;
+      --color-background-alternative-faded: var(--shade-0);
+      --flow-side-spacing: 0;
+      --border-radius-pill: 20rem;
+    }
+
+    body {
+      font-family: ProximaVara, "Helvetica Neue", Helvetica, Arial;
+      background: var(--secondary);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      width: 80%;
+      margin: auto;
+      margin-top: 5% !important;
+    }
+
+
+    .row>.column {
+      padding: 8px;
+    }
+
+    .column {
+      float: left;
+      width: 100%;
+      display: none;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .show {
+      display: block;
+    }
+
+    img.profile_pic {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+    }
+
+    .heading {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 32.66px;
+      margin: 0;
+      color: var(--primary);
+    }
+
+    .heading_2 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 0px;
+      margin: 0;
+      color: var(--primary);
+    }
+
+    .profile_pic span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ternary);
+    }
+
+    .filter_res {
+      cursor: pointer;
+      color: var(--primary);
+      padding: 0.6%;
+      padding-right: 1%;
+      font-size: 1rem;
+      display: flex;
+      line-height: 1.3540000916;
+    }
+
+    .filter_res.active_filter {
+      border-bottom: 2px groove var(--primary);
+    }
+
+    #action_container {
+      display: flex;
+      border-bottom: 1px solid var(--color-borders-hairline);
+    }
+
+    .sub_heading_1 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .sub_heading_3 {
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--primary);
+    }
+
+    .sub_heading_2 {
+      font-size: 0.99rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 0;
+      padding: 0;
+    }
+
+    .sm_font {
+      font-size: 0.8rem;
+    }
+
+    .dropdown-menu {
+      margin: 7% !important;
+      font-size: 0.9rem;
+      width: 220px;
+      padding: 7% 5%;
+      transform: translate3d(7px, 33px, 0px) !important;
+    }
+
+    .dropdown-item {
+      color: var(--primary) !important;
+      background: var(--secondary) !important;
+      border-bottom: 1px groove transparent !important;
+      padding-block: var(--spacing-xsmall);
+    }
+
+    .dropdown-item:hover {
+      background-color: var(--color-borders-hairline) !important;
+    }
+
+    .text_primary_color {
+      color: var(--primary) !important;
+    }
+
+    .text_secondary_color {
+      color: var(--fifthary) !important;
+    }
+
+    .bg_primary {
+      background-color: var(--ternary);
+    }
+
+    .bg_secondary {
+      background-color: var(--forthary);
+    }
+
+    .dropdown-toggle::after {
+      color: var(--primary) !important;
+      margin-right: 5px;
+      font-size: 1rem;
+    }
+
+    .del_action {
+      font-size: 1rem;
+      font-weight: 500;
+      color: red;
+      padding: 0.8% 1.5%;
+      border-radius: 5px;
+      border: 1px solid transparent;
+    }
+
+    a {
+      text-decoration: none !important;
+    }
+
+    .del_action:hover {
+      background-color: rgba(255, 0, 0, 0.21);
+      border: 1px solid rgba(255, 0, 0, 0.23);
+      color: red;
+    }
+
+    .btn_logout:hover {
+      background: var(--secondary);
+      color: var(--primary);
+    }
+
+    .mail {
+      color: var(--fifthary);
+      font-size: 1rem;
+      line-height: 21.664px;
+      padding: 22px 0 !important;
+    }
+
+    /* Recent Reading Style */
+    /* Card Style */
+    .RecentReadingSessions_verseLink__Ky4p8 {
+      width: 192px;
+      max-width: calc(6*var(--spacing-mega));
+      height: 220.375px;
+      border: 1px solid var(--color-borders-hairline);
+      padding: 2%;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: var(--border-radius-default);
+    }
+
+    .RecentReadingSessions_verseLink__Ky4p8:hover {
+      border: 1px solid var(--color-success-medium);
+    }
+
+    .SurahPreviewBlock_header__Jg3cj {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .SurahPreviewBlock_surahIcon__IFm5J {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: calc(6*var(--spacing-medium));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--color-background-alternative-faint);
+      border-radius: var(--border-radius-default);
+    }
+
+    .ChapterIconContainer_iconContainerLarge__z49r_ span {
+      font-size: var(--font-size-jumbo);
+      line-height: normal;
+      font-family: surahnames;
+    }
+
+    .SurahPreviewBlock_surahName__MNieK {
+      font-weight: var(--font-weight-bold);
+      margin-block-end: var(--spacing-xsmall);
+      font-size: var(--font-size-large);
+      vertical-align: baseline;
+      line-height: 1.3540000916;
+    }
+
+    .SurahPreviewBlock_translatedSurahName__ZZkwX {
+      font-weight: var(--font-weight-bold);
+      margin-block-end: var(--spacing-xsmall);
+    }
+
+    .SurahPreviewBlock_surahNumber__MEa5C {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-large);
+    }
+
+    .SurahPreviewBlock_description__bfpmJ {
+      font-size: var(--font-size-xsmall);
+    }
+
+    .SurahPreviewBlock_container__ME6vO {
+      border-radius: var(--border-radius-default);
+      cursor: pointer;
+    }
+
+    .RecentReadingSessions_verseLink__Ky4p8:hover {
+      background-color: var(--color-background-alternative-faded);
+      border: 1px solid var(--color-success-medium);
+    }
+
+    .RecentReadingSessions_sessionsHeader__lbyVl {
+      margin-block-end: var(--spacing-xsmall);
+      vertical-align: baseline;
+      line-height: 1.3540000916;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 2%;
+      padding-inline-end: var(--flow-side-spacing, 0);
+      display: flex;
+      align-items: center;
+      font-size: var(--font-size-large);
+    }
+
+    .recently_added_cards {
+      display: flex;
+    }
+
+    .BookmarksAndQuickLinks_contentContainer__qG9mM {
+      min-height: calc(1.3*var(--spacing-mega));
+      line-height: 1.3540000916;
+      margin-block-end: var(--spacing-medium);
+    }
+    .BookmarkedVersesList_verseLinksContainer__meD2a {
+      display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    }
+    .BookmarkPill_bookmarkItem__hpZIB {
+      display: flex;
+    align-items: center;
+    -webkit-margin-end: var(--spacing-small);
+    margin-inline-end: var(--spacing-small);
+    white-space: nowrap;
+    background-color: var(--color-success-medium);
+    border-radius: var(--border-radius-pill);
+    -webkit-padding-start: var(--spacing-small);
+    padding-inline-start: var(--spacing-small);
+    padding-block: var(--spacing-xsmall);
+    vertical-align: baseline;
+    line-height: 1.3540000916;
+    padding:1% 2%;
+    }
+    .BookmarkPill_linkButtonContainer__RfHXj {
+    color: var(--shade-0);
+    text-decoration: none;
+    background-color: transparent;
+    font-weight: var(--font-weight-semibold);
+}
+.BookmarkPill_closeIconContainer__5UX1S {
+    border: none;
+    width: var(--spacing-xsmall);
+    padding-inline-start: var(--spacing-small);
+    -webkit-padding-end: var(--spacing-large);
+    padding-inline-end: var(--spacing-large);
+    background-color: transparent;
+    color: var(--shade-0);
+}.BookmarkPill_closeIconContainer__5UX1S>span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 17px;
+    width: 17px;
+}
+  </style>
+</head>
+
+<body>
+
+
+  <!-- MAIN (Center website) -->
+  <div class="main my-5">
+
+    <div class="row mb-4">
+      <div class="col-1 mr-3"><img src="/img/profile_img.jpg" alt="" class="profile_pic"></div>
+      <div class="col">
+        <div class="detail">
+          <h3 class="heading">Tiger Gameing</h3>
+          <span class="mail">tigergaming@gmail.com</sp>
+        </div>
+      </div>
+    </div>
+    <section class="recently_read">
+      <span class="  RecentReadingSessions_sessionsHeader__lbyVl text_primary_color ">Recently Read</span>
+      <div class="recently_added_cards">
+        <div class="RecentReadingSessions_verseLink__Ky4p8"><a href="/1?startingVerse=1" class="Link_base__9W8Qs">
+            <div class="SurahPreviewBlock_container__ME6vO">
+              <div class="SurahPreviewBlock_header__Jg3cj">
+                <div>
+                  <div class="SurahPreviewBlock_translatedSurahName__ZZkwX text_secondary_color">The Opener</div>
+                  <div class="SurahPreviewBlock_surahName__MNieK text text_primary_color">Surah <br>Al-Fatihah</div>
+                </div>
+                <div class="SurahPreviewBlock_surahNumber__MEa5C text_primary_color">1</div>
+              </div>
+              <div class="SurahPreviewBlock_surahIcon__IFm5J bg_secondary text_primary_color"><span
+                  class="ChapterIconContainer_iconContainer__5umYV ChapterIconContainer_iconContainerLarge__z49r_"><span
+                    translate="no">001</span></span>
+                <div class="SurahPreviewBlock_description__bfpmJ">Ayah 1</div>
+              </div>
+            </div>
+          </a></div>
+
+        <div class="RecentReadingSessions_verseLink__Ky4p8"><a href="/1?startingVerse=1" class="Link_base__9W8Qs">
+            <div class="SurahPreviewBlock_container__ME6vO">
+              <div class="SurahPreviewBlock_header__Jg3cj">
+                <div>
+                  <div class="SurahPreviewBlock_translatedSurahName__ZZkwX text_secondary_color">The Opener</div>
+                  <div class="SurahPreviewBlock_surahName__MNieK text text_primary_color">Surah <br>Al-Fatihah</div>
+                </div>
+                <div class="SurahPreviewBlock_surahNumber__MEa5C text_primary_color">1</div>
+              </div>
+              <div class="SurahPreviewBlock_surahIcon__IFm5J bg_secondary text_primary_color"><span
+                  class="ChapterIconContainer_iconContainer__5umYV ChapterIconContainer_iconContainerLarge__z49r_"><span
+                    translate="no">001</span></span>
+                <div class="SurahPreviewBlock_description__bfpmJ">Ayah 1</div>
+              </div>
+            </div>
+          </a></div>
+        <div class="RecentReadingSessions_verseLink__Ky4p8"><a href="/1?startingVerse=1" class="Link_base__9W8Qs">
+            <div class="SurahPreviewBlock_container__ME6vO">
+              <div class="SurahPreviewBlock_header__Jg3cj">
+                <div>
+                  <div class="SurahPreviewBlock_translatedSurahName__ZZkwX text_secondary_color">The Opener</div>
+                  <div class="SurahPreviewBlock_surahName__MNieK text text_primary_color">Surah <br>Al-Fatihah</div>
+                </div>
+                <div class="SurahPreviewBlock_surahNumber__MEa5C text_primary_color">1</div>
+              </div>
+              <div class="SurahPreviewBlock_surahIcon__IFm5J bg_secondary text_primary_color"><span
+                  class="ChapterIconContainer_iconContainer__5umYV ChapterIconContainer_iconContainerLarge__z49r_"><span
+                    translate="no">001</span></span>
+                <div class="SurahPreviewBlock_description__bfpmJ">Ayah 1</div>
+              </div>
+            </div>
+          </a></div>
+      </div>
+    </section>
+    <div id="action_container">
+      <span class="filter_res active_filter" onclick="filterSelection('nature')"> Bookmarks</span>
+      <span class="filter_res " onclick="filterSelection('cars')"> Collections</span>
+
+    </div>
+
+
+    <div class="row ">
+      <div class="column nature my-2">
+        <!-- <span class="sub_heading_3 ">You do not have any bookmarks yet</span> -->
+        <div class="BookmarksAndQuickLinks_contentContainer__qG9mM BookmarksAndQuickLinks_tabsContainer__pQ8pR">
+          <div class="BookmarkedVersesList_container__8v8bC">
+            <div>
+              <div class="BookmarkedVersesList_verseLinksContainer__meD2a">
+                <div class="BookmarkPill_bookmarkItem__hpZIB"><a href="/1/1"
+                    class="Link_base__9W8Qs BookmarkPill_linkButtonContainer__RfHXj">Al-Fatihah 1:1</a><button
+                    type="button" class="BookmarkPill_closeIconContainer__5UX1S"><span><svg width="24" height="24"
+                        viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687 4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z"
+                          fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                      </svg></span></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="column cars">
+
+        <div class="row vertical_center align-items-center px-0">
+          <div class="col sm_font py-0 ">
+            <span class="sub_heading_1">Collection</span>
+          </div>
+
+          <div class="col sm_font d-flex justify-content-end py-0">
+            <div class="btn-group  p-2 ">
+              <button type="button" class="btn btn-sm sm_font   text_primary_color">Recently Updated</button>
+              <button type="button" class="btn btn-sm  sm_font  dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div class="dropdown-menu sm_font p-0 w-50 ">
+                <a class="dropdown-item p-1 px-2" href="#">Recently</a>
+                <a class="dropdown-item p-1 px-2" href="#">A-Z</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-2"> <span class="heading_2 px-0">All saved verses</span>
+          <div class="row py-1 px-2 align-items-center"><img class="mr-1" src="/img/book_mark.svg" height="20px"
+              width="20px" alt="bookmark">
+            <span class="sub_heading_2">0 Verses</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="links my-5">
+      <div class="d-flex justify-content-center align-items-center">
+        <a class="d-block del_action" href="">Delete Account</a>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center my-4">
+        <a class="btn_logout btn btn-light " href="">Logout</a>
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+      integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
+    </script>
+    <script>
+      $()
+      filterSelection("nature")
+      $(".filter_res").click(function () {
+        $(".filter_res").removeClass("active_filter");
+        $(this).addClass("active_filter");
+      });
+
+      function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("column");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+          w3RemoveClass(x[i], "show");
+          if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+      }
+
+      function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          if (arr1.indexOf(arr2[i]) == -1) {
+            element.className += " " + arr2[i];
+          }
+        }
+      }
+
+      function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);
+          }
+        }
+        element.className = arr1.join(" ");
+      }
+
+
+      // Add active class to the current button (highlight it)
+      var btnContainer = document.getElementById("myBtnContainer");
+      var btns = btnContainer.getElementsByClassName("filter_res");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+    </script>
+</body>
+
+</html>
